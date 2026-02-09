@@ -144,7 +144,7 @@ def test_create_booking_with_no_name_data(api_client):
     "totalprice" : 111,
     "depositpaid" : True,
     "bookingdates" : {
-        "checkin" : "01-01-2026",
+        "checkin" : "01-02-2026",
         "checkout" : "2026-03-21"
     },
     "additionalneeds" : "Breakfast"

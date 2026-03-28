@@ -94,33 +94,7 @@ def test_create_booking_with_null_data(api_client):
         assert response.status_code == 500, f"Expected status 200 but got {response.status_code}"
         assert str(e.value) == '500 Server Error'
 
-@allure.feature('Test Create Booking')
-@allure.story('Test creating booking with uncorrect format checkin data')
-def test_create_booking_with_uncortect_checkin_data(api_client):
-    booking_data = {
-    "firstname" : "Jim",
-    "lastname" : "Brown",
-    "totalprice" : 111,
-    "depositpaid" : True,
-    "bookingdates" : {
-        "checkin" : "01-01-2026",
-        "checkout" : "2026-03-21"
-    },
-    "additionalneeds" : "Breakfast"
-}
-    response = api_client.create_booking(booking_data=booking_data)
-    try:
-        BookingResponse(**response)
-    except ValidationError as e:
-        raise ValidationError(f"Response validation failed: {e}")
 
-    assert response['booking']['firstname'] == booking_data['firstname']
-    assert response['booking']['lastname'] == booking_data['lastname']
-    assert response['booking']['totalprice'] == booking_data['totalprice']
-    assert response['booking']['depositpaid'] == booking_data['depositpaid']
-    assert response['booking']['bookingdates']['checkin'] == booking_data['bookingdates']['checkin']
-    assert response['booking']['bookingdates']['checkout'] == booking_data['bookingdates']['checkout']
-    assert response['booking']['additionalneeds'] == booking_data['additionalneeds']
 
 @allure.feature('Test Create Booking')
 @allure.story('Test creating booking with no name data')

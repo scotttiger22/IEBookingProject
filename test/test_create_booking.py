@@ -94,8 +94,6 @@ def test_create_booking_with_null_data(api_client):
         assert response.status_code == 500, f"Expected status 200 but got {response.status_code}"
         assert str(e.value) == '500 Server Error'
 
-
-
 @allure.feature('Test Create Booking')
 @allure.story('Test creating booking with no name data')
 def test_create_booking_with_no_name_data(api_client):
